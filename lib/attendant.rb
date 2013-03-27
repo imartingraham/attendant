@@ -1,5 +1,6 @@
 require 'attendant/version'
 require 'attendant/searchlight'
+require 'rubygems'
 require 'net/http'
 require 'net/https'
 require 'httpi'

@@ -1,5 +1,4 @@
 module Attendant
-
 	class SearchLight
 
 		def initialize(email, api_key, url)
