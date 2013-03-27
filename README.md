@@ -10,7 +10,7 @@ Example:
 		url: "http://api.conductor.com"
 	}
 
-	c = Attendant::SearchLIght.new(config[:email], 	config[:secret], config[:url])
+	c = Attendant::SearchLight.new(config[:email], 	config[:secret], config[:url])
 
 	data = c.send_request "/v2/accounts"
 
