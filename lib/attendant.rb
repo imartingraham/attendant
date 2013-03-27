@@ -1,5 +1,5 @@
-require File.expand_path('./../../lib/attendant/version', __FILE__)
-require File.expand_path('./../../lib/attendant/searchlight', __FILE__)
+require File.expand_path('attendant/version', __FILE__)
+require File.expand_path('attendant/searchlight', __FILE__)
 require 'net/http'
 require 'net/https'
 require 'httpi'

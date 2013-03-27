@@ -2,11 +2,11 @@ $:.push File.expand_path("../lib", __FILE__)
 require "Attendant/version"
 
 Gem::Specification.new do |s|
-  s.name              = "Attendant"
+  s.name              = "attendant"
   s.version           = Attendant::VERSION
   s.authors           = ["Ian Graham"]
   s.email             = ["imartingraham@gmail.com"]
-  s.homepage          = "http://github.com/imartingraham/Attendant"
+  s.homepage          = "http://github.com/imartingraham/attendant"
   s.summary           = "Simple wrapper for Conductor Searchlight API."
   s.description       = ""
 
