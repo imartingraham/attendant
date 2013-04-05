@@ -35,7 +35,7 @@ module Attendant
 
 		end
 
-		def send_request(path, method = "GET", data)
+		def send_request(path, method = "GET", data = nil)
 			request = HTTPI::Request.new
 			request.url = @url + path
 			request.headers = headers(path, method)
