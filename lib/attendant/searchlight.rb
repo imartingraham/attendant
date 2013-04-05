@@ -46,11 +46,7 @@ module Attendant
 				request.body = data.to_json
 				response = HTTPI.post(request)
 			end
-			if response.code == 200
-				response
-			else
-				nil
-			end
+			response
 		end
 	end
 end
