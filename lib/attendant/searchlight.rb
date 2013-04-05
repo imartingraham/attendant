@@ -35,7 +35,7 @@ module Attendant
 
 		end
 
-		def send_request(path, method = "GET")
+		def send_request(path, method = "GET", data)
 			request = HTTPI::Request.new
 			request.url = @url + path
 			request.headers = headers(path, method)
@@ -43,6 +43,7 @@ module Attendant
 			if(method == 'GET')
 				response = HTTPI.get(request)
 			else
+				request.body = data
 				response = HTTPI.post(request)
 			end
 			if response.code == 200
