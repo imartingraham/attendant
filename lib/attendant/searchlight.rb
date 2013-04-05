@@ -7,10 +7,11 @@ module Attendant
 			@url = url
 		end
 
-		def generate_signature(path, method, date)
+		def generate_signature(path, method, date, body = '')
 			data = Array.new
 			data.push(method)
-			content = ""
+
+			content = body.kind_of?(Hash) ? body.to_json : body
 			content_md5 = Digest::MD5.hexdigest(content)
 			data.push(content_md5)
 			data.push("application/json")
@@ -23,27 +24,26 @@ module Attendant
 			return "CSA "<< @email << ":" << signature
 		end
 
-		def headers(path, method)
+		def headers(path, method, date = Time.now.utc, body = '')
 
-			date = Time.now.utc
 			date = date.strftime("%a, %d %b %Y %H:%M:%S %Z")
 			headers = {
-				"Authorization" => generate_signature(path, method, date),
+				"Authorization" => generate_signature(path, method, date, body),
 				"Content-Type" => "application/json",
 				"Date" => date
 			}
 
 		end
 
-		def send_request(path, method = "GET", data = nil)
+		def send_request(path, method = "GET", data = '')
 			request = HTTPI::Request.new
 			request.url = @url + path
-			request.headers = headers(path, method)
+			request.headers = headers(path, method, Time.now.utc, data)
 			request.auth.ssl.verify_mode = :none
 			if(method == 'GET')
 				response = HTTPI.get(request)
 			else
-				request.body = data
+				request.body = data.to_json
 				response = HTTPI.post(request)
 			end
 			if response.code == 200
